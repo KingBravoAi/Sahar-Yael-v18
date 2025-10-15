@@ -1,0 +1,16 @@
+ci/ci-v18.yml (GitHub Actions)
+name: CI v18
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11" }
+      - name: Install deps
+        run: |
+          pip install fastapi pydantic==2.* pytest jsonschema orjson numpy
+      - name: Schema + tests
+        run: |
+          pytest -q backend/tests
