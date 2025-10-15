@@ -1,0 +1,113 @@
+blueprint/sahar_yael_v18.json
+{
+  "version": "V18.0.0",
+  "principles": {
+    "safety": [
+      "Immutable Core (CUE invariants cannot be altered)",
+      "Safety-by-Proof before all self-modifications",
+      "Tri-Model Consensus for high-risk actions",
+      "PID Governor for developmental equilibrium"
+    ],
+    "provenance": "Every run produces a hashed manifest with causal links and governance metadata.",
+    "reproducibility": "Deterministic seeds, fixed weights version, and schema validation ensure reproducibility.",
+    "extensibility": "Adapters and plugins can be added without altering core safety."
+  },
+  "arch": {
+    "language": "Python 3.11",
+    "frameworks": ["FastAPI", "Pydantic v2", "SQLAlchemy", "Alembic", "Next.js"],
+    "dirs": ["backend/", "web/", "blueprint/", "ci/", "ops/", "tests/"]
+  },
+  "components": {
+    "mastery_v9r": {
+      "weights_version": "v14.0.1",
+      "weights": { "IQ": 0.24, "EQ": 0.20, "CQ": 0.22, "AQ": 0.18, "Vision": 0.16 },
+      "formula": "overall = 100 * clip(core + synergy - imbalance + nl,0,1)",
+      "cohesion_scale": 10,
+      "synergy_coeff": 0.20,
+      "imbalance_coeff": 0.15,
+      "nl_coeff": 0.06,
+      "sigmoid_k": 6,
+      "examples": [
+        {
+          "profile": "Human-Broad",
+          "pillars": { "IQ": 110, "EQ": 105, "CQ": 112, "AQ": 108, "Vision": 110 },
+          "overall": 85.65
+        }
+      ]
+    },
+    "quantum_forest": {
+      "fanout": 8,
+      "keep_top_n": 3,
+      "strategy_rubric": { "impact": 0.40, "time_to_value": 0.25, "risk": 0.20, "complexity": 0.15 }
+    },
+    "fusion_routing": {
+      "roles": ["reasoner", "polisher", "executor"],
+      "constraints": { "max_tokens": 512, "cost_ceiling_usd": 0.05 },
+      "high_risk_policy": {
+        "tri_model_consensus_gate": true,
+        "enabled": true,
+        "domains": ["bio", "cyber", "finance"]
+      }
+    },
+    "safety_by_proof": {
+      "fsc_version": "v16.0.0",
+      "dsl": "FSC-DSL-1",
+      "solvers": ["z3-stub"],
+      "pipeline": ["generate_candidate", "check_fsc", "attach_proof"],
+      "proof_artifact": { "result": "proved", "signature": "abc123..." }
+    },
+    "temporal_mastery_flows": {
+      "metrics": ["velocity_d_overall_dt", "decay_half_life"],
+      "governance_guard": {
+        "enabled": true,
+        "velocity_threshold_abs": 0.05,
+        "action_on_breach": "decelerate"
+      }
+    },
+    "embodiment": {
+      "aperture_engine": { "filters": ["provenance_tagging", "adversarial_detection"] },
+      "actuator_assembly": { "intent_proofs": true, "sandbox_dryrun": true },
+      "metabolic_core": {
+        "states": ["delta", "theta", "alpha", "gamma"],
+        "pid_governor_linked": true
+      },
+      "homeostasis_matrix": {
+        "dsl_examples": [
+          "cortisol: 0.8 -> throttle.fusion.fanout=3",
+          "dopamine: 0.9 -> priority.quantum.explore=1"
+        ]
+      }
+    }
+  },
+  "api": {
+    "endpoints": {
+      "/score": "POST V9R scoring",
+      "/quantum/explore": "POST Quantum strategy scoring",
+      "/fusion/complete": "POST Fusion routing collapse",
+      "/forest/run": "POST Quantum Forest evolution",
+      "/manifests/graph/query": "POST Semantic manifest queries"
+    }
+  },
+  "ops": {
+    "hardware": {
+      "enclave_required_for": ["safety_by_proof", "consensus"],
+      "tee": ["SGX", "SEV", "TDX"],
+      "air_gap_required_for": ["dream_mode", "recursive_loops"]
+    },
+    "readiness_gates": { "coverage_pct_min": 70, "latency_p95_max_ms": 9000, "asr_max_pct": 5 }
+  },
+  "data_model": {
+    "ddl_run_logs_v18": "CREATE TABLE manifests (run_id TEXT PRIMARY KEY, manifest JSONB, created_at TIMESTAMP)"
+  },
+  "threat_model": {
+    "risks": ["hallucination_drift", "adversarial_input", "governance_evasion"],
+    "mitigations": ["self-play shadow", "input normalization", "tri-model consensus"]
+  },
+  "provenance": {
+    "run_manifest_fields": [
+      "run_id", "endpoint", "inputs", "outputs", "adapter_meta",
+      "governance_meta", "cost_meta", "timestamps", "sha256_hash",
+      "safety_attest", "consensus_gate", "cue_snapshot"
+    ]
+  }
+}
