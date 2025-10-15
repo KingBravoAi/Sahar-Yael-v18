@@ -1,0 +1,9 @@
+Dockerfile.backend
+FROM python:3.11-slim
+WORKDIR /app
+COPY backend/pyproject.toml backend/app/ /app/
+RUN pip install --no-cache-dir uvicorn fastapi pydantic==2.* sqlalchemy psycopg2-binary \
+    orjson numpy networkx
+# z3 can be optional; keep stubbed
+EXPOSE 8000
+CMD ["uvicorn","app.main:app","--host","0.0.0.0","--port","8000"]
