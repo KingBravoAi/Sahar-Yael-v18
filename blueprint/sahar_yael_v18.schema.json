@@ -1,0 +1,106 @@
+blueprint/sahar_yael_v18.schema.json
+(Draft 2020-12 validator, keeps strict safety but allows extensibility)
+{
+  "$id": "https://example.com/sahar_yael_v18.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sahar Yael V18 Blueprint Schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "principles", "arch", "components", "api", "ops", "data_model", "threat_model", "provenance"],
+  "properties": {
+    "version": { "const": "V18.0.0" },
+    "principles": {
+      "type": "object",
+      "required": ["safety", "provenance", "reproducibility", "extensibility"],
+      "properties": {
+        "safety": { "type": "array", "minItems": 4, "items": { "type": "string" } },
+        "provenance": { "type": "string", "minLength": 20 },
+        "reproducibility": { "type": "string", "minLength": 20 },
+        "extensibility": { "type": "string", "minLength": 20 }
+      }
+    },
+    "arch": {
+      "type": "object",
+      "required": ["language", "frameworks", "dirs"],
+      "properties": {
+        "language": { "type": "string" },
+        "frameworks": { "type": "array", "minItems": 5, "items": { "type": "string" } },
+        "dirs": { "type": "array", "minItems": 6, "items": { "pattern": "^[a-zA-Z0-9_\\-]+/$" } }
+      }
+    },
+    "components": {
+      "type": "object",
+      "required": ["mastery_v9r", "quantum_forest", "fusion_routing", "safety_by_proof", "temporal_mastery_flows", "embodiment"],
+      "properties": {
+        "mastery_v9r": {
+          "type": "object",
+          "required": ["weights_version", "weights", "formula"],
+          "properties": {
+            "weights_version": { "pattern": "^v\\d+\\.\\d+\\.\\d+$" },
+            "weights": { "type": "object", "minProperties": 5 },
+            "formula": { "type": "string" }
+          }
+        },
+        "quantum_forest": {
+          "type": "object",
+          "required": ["fanout", "keep_top_n", "strategy_rubric"],
+          "properties": {
+            "fanout": { "type": "integer", "minimum": 2 },
+            "keep_top_n": { "type": "integer", "minimum": 1 },
+            "strategy_rubric": { "type": "object", "properties": { "impact": { "type": "number" } } }
+          }
+        },
+        "fusion_routing": {
+          "type": "object",
+          "required": ["roles", "constraints", "high_risk_policy"],
+          "properties": {
+            "roles": { "type": "array", "minItems": 3 },
+            "constraints": { "type": "object" },
+            "high_risk_policy": { "type": "object", "required": ["tri_model_consensus_gate", "enabled", "domains"] }
+          }
+        },
+        "safety_by_proof": {
+          "type": "object",
+          "required": ["fsc_version", "dsl", "pipeline", "proof_artifact"],
+          "properties": {
+            "fsc_version": { "pattern": "^v\\d+\\.\\d+\\.\\d+$" },
+            "proof_artifact": { "type": "object", "required": ["result"] }
+          }
+        },
+        "temporal_mastery_flows": {
+          "type": "object",
+          "properties": {
+            "governance_guard": {
+              "type": "object",
+              "properties": {
+                "enabled": { "type": "boolean" },
+                "velocity_threshold_abs": { "type": "number", "minimum": 0, "maximum": 1 }
+              }
+            }
+          }
+        },
+        "embodiment": {
+          "type": "object",
+          "required": ["aperture_engine", "actuator_assembly", "metabolic_core", "homeostasis_matrix"],
+          "properties": {
+            "aperture_engine": { "type": "object" },
+            "actuator_assembly": { "type": "object" },
+            "metabolic_core": { "type": "object" },
+            "homeostasis_matrix": {
+              "type": "object",
+              "properties": {
+                "dsl_examples": { "type": "array", "items": { "type": "string" } }
+              }
+            }
+          }
+        }
+      }
+    },
+    "api": { "type": "object" },
+    "ops": { "type": "object" },
+    "data_model": { "type": "object" },
+    "threat_model": { "type": "object" },
+    "provenance": { "type": "object" }
+  }
+}
+
